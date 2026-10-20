@@ -29,4 +29,4 @@ jobs:
           pip install numpy scipy scikit-learn beautifulsoup4 requests pandas torch xgboost lightgbm numba
 
       - name: Ejecutar Fuxing
-        run: python -u Fuxing_Programa_Corregido.py
+        run: python -u FuxingDefinitivoSinGui.py
