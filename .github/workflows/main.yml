@@ -1,0 +1,33 @@
+name: Fuxing Definitivo - Ejecucion
+
+on:
+  schedule:
+    - cron: '00 21 * * *'
+      timezone: 'Europe/Madrid'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ejecutar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy scikit-learn beautifulsoup4 requests pandas torch xgboost lightgbm numba
+
+      - name: Ejecutar Fuxing
+        run: python -u Fuxing_Programa_Corregido.py
